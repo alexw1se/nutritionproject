@@ -12,6 +12,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminAuthController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/', function () {
+    return view('welcome'); // You can replace 'welcome' with any view name
+});
+
 // Authentication Routes
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login'); // Show login form
 Route::post('login', [LoginController::class, 'login']); // Handle login
@@ -56,10 +61,9 @@ Route::middleware('auth')->group(function () {
     // Barcode Scanner Routes
     Route::get('barcode-scanner', [BarcodeController::class, 'index'])->name('barcode-scanner.index'); // Show barcode scanner
     Route::post('barcode-scanner', [BarcodeController::class, 'scan'])->name('barcode-scanner.scan'); // Handle barcode scan
+});
 
 
 
-use App\Http\Controllers\AdminAuthController;
-use Illuminate\Support\Facades\Route;
 
 
