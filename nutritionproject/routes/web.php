@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome'); // You can replace 'welcome' with any view name
 });
 
+
+// Public routes or routes that can be accessed without authentication
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
 // Authentication Routes
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login'); // Show login form
 Route::post('login', [LoginController::class, 'login']); // Handle login
