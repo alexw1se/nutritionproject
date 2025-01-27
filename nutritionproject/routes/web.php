@@ -9,6 +9,8 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminAuthController;
+use Illuminate\Support\Facades\Route;
 
 // Authentication Routes
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login'); // Show login form
@@ -55,6 +57,9 @@ Route::middleware('auth')->group(function () {
     Route::get('barcode-scanner', [BarcodeController::class, 'index'])->name('barcode-scanner.index'); // Show barcode scanner
     Route::post('barcode-scanner', [BarcodeController::class, 'scan'])->name('barcode-scanner.scan'); // Handle barcode scan
 
-    // Dashboard Routes
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index'); // View user dashboard
-});
+
+
+use App\Http\Controllers\AdminAuthController;
+use Illuminate\Support\Facades\Route;
+
+
