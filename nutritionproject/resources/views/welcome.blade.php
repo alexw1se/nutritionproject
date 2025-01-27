@@ -1,3 +1,6 @@
+@extends('layouts.app') <!-- Extending the layout you already have -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
