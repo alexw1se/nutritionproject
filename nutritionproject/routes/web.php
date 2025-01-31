@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\GoalController;
-use App\Http\Controllers\FoodController;
+use App\Http\Controller\FoodController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\DashboardController;
@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');  // This will load the app.blade.php layout
 });
-
 
 // Authentication Routes
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login'); // Show login form
@@ -65,5 +64,4 @@ Route::middleware('auth')->group(function () {
     // Barcode Scanner Routes
     Route::get('barcode-scanner', [BarcodeController::class, 'index'])->name('barcode-scanner.index'); // Show barcode scanner
     Route::post('barcode-scanner', [BarcodeController::class, 'scan'])->name('barcode-scanner.scan'); // Handle barcode scan
-
 });
