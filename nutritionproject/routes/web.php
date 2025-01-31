@@ -1,5 +1,6 @@
 
 <?php
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserProfileController;
@@ -12,13 +13,21 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminAuthController;
 use Illuminate\Support\Facades\Route;
 
+
+// home page
+Route::get('/', function () {
+    return view('welcome');  // This will load the app.blade.php layout
+});
+
+
 // Authentication Routes
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login'); // Show login form
 Route::post('login', [LoginController::class, 'login']); // Handle login
 Route::post('logout', [LoginController::class, 'logout'])->name('logout'); // Handle logout
 
-Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register'); // Show registration form
-Route::post('register', [RegisterController::class, 'register']); // Handle registration
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register'); // Show registration form
+Route::post('/register', [RegisterController::class, 'register']); // Handle registration
+
 
 // Routes that require authentication (User must be logged in)
 Route::middleware('auth')->group(function () {
@@ -57,9 +66,4 @@ Route::middleware('auth')->group(function () {
     Route::get('barcode-scanner', [BarcodeController::class, 'index'])->name('barcode-scanner.index'); // Show barcode scanner
     Route::post('barcode-scanner', [BarcodeController::class, 'scan'])->name('barcode-scanner.scan'); // Handle barcode scan
 
-
-
-use App\Http\Controllers\AdminAuthController;
-use Illuminate\Support\Facades\Route;
-
-
+});
