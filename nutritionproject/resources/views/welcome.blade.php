@@ -12,4 +12,4 @@
     <h1>Welcome to My Site!</h1>
     <p>This is a simple test page.</p>
 </body>
-</html>
+

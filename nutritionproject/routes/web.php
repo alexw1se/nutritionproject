@@ -1,11 +1,12 @@
 
 <?php
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\GoalController;
-use App\Http\Controllers\FoodController;
+use App\Http\Controller\FoodController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\BarcodeController;
 use App\Http\Controllers\DashboardController;
@@ -13,21 +14,19 @@ use App\Http\Controllers\AdminAuthController;
 use Illuminate\Support\Facades\Route;
 
 
+// home page
 Route::get('/', function () {
-    return view('welcome'); // You can replace 'welcome' with any view name
+    return view('welcome');  // This will load the app.blade.php layout
 });
-
-
-// Public routes or routes that can be accessed without authentication
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 // Authentication Routes
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login'); // Show login form
 Route::post('login', [LoginController::class, 'login']); // Handle login
 Route::post('logout', [LoginController::class, 'logout'])->name('logout'); // Handle logout
 
-Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register'); // Show registration form
-Route::post('register', [RegisterController::class, 'register']); // Handle registration
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register'); // Show registration form
+Route::post('/register', [RegisterController::class, 'register']); // Handle registration
+
 
 // Routes that require authentication (User must be logged in)
 Route::middleware('auth')->group(function () {
@@ -66,8 +65,3 @@ Route::middleware('auth')->group(function () {
     Route::get('barcode-scanner', [BarcodeController::class, 'index'])->name('barcode-scanner.index'); // Show barcode scanner
     Route::post('barcode-scanner', [BarcodeController::class, 'scan'])->name('barcode-scanner.scan'); // Handle barcode scan
 });
-
-
-
-
-
